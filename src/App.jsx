@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
+import MobileAppNav from './components/MobileAppNav';
 import Hero from './components/Hero';
 import WhySabol from './components/WhySabol';
 import Products from './components/Products';
@@ -29,7 +30,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-sabol-aqua/20 selection:text-sabol-navy-950">
+    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-sabol-aqua/20 selection:text-sabol-navy-950 pb-16 md:pb-0">
       {/* Sticky Header Navbar */}
       <Navbar onOpenOrderModal={handleOpenOrderModal} />
 
@@ -74,6 +75,9 @@ function App() {
 
       {/* Footer */}
       <Footer onOpenOrderModal={handleOpenOrderModal} />
+
+      {/* Mobile Native App Bottom Navigation Dock */}
+      <MobileAppNav onOpenOrderModal={handleOpenOrderModal} />
 
       {/* Interactive Quick Order Modal */}
       <OrderModal

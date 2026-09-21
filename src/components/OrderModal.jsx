@@ -67,26 +67,31 @@ export const OrderModal = ({ isOpen, onClose, initialProduct = null }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-sabol-navy-950/70 backdrop-blur-sm"
+            className="fixed inset-0 bg-sabol-navy-950/75 backdrop-blur-sm"
           />
 
-          {/* Modal Dialog */}
+          {/* Modal / Mobile Bottom Sheet Dialog */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden z-10 my-8 border border-slate-100"
+            initial={{ opacity: 0, y: 50, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 80, scale: 0.98 }}
+            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+            className="relative w-full sm:max-w-lg bg-white rounded-t-[32px] sm:rounded-3xl shadow-2xl overflow-hidden z-10 mt-auto sm:my-8 max-h-[92vh] flex flex-col border-t sm:border border-slate-100"
           >
+            {/* Mobile Sheet Drag Handle Indicator */}
+            <div className="sm:hidden w-full flex justify-center pt-3 pb-1 bg-gradient-to-r from-sabol-navy-900 via-sabol-navy-800 to-sabol-blue">
+              <div className="w-12 h-1.5 bg-white/40 rounded-full" />
+            </div>
+
             {/* Header */}
-            <div className="relative bg-gradient-to-r from-sabol-navy-900 via-sabol-navy-800 to-sabol-blue px-6 py-5 text-white">
+            <div className="relative bg-gradient-to-r from-sabol-navy-900 via-sabol-navy-800 to-sabol-blue px-6 py-4 sm:py-5 text-white flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-sabol-aqua/20 border border-sabol-aqua/30 flex items-center justify-center text-sabol-aqua">
@@ -98,8 +103,9 @@ export const OrderModal = ({ isOpen, onClose, initialProduct = null }) => {
                   </div>
                 </div>
                 <button
+                  type="button"
                   onClick={onClose}
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors active:scale-90"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -107,7 +113,7 @@ export const OrderModal = ({ isOpen, onClose, initialProduct = null }) => {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6">
+            <div className="p-5 sm:p-6 overflow-y-auto flex-1 overscroll-contain">
               {submitted ? (
                 <div className="text-center py-8 space-y-4">
                   <motion.div
