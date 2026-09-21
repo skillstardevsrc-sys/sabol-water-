@@ -38,11 +38,11 @@ function App() {
         {/* 1. Hero Section */}
         <Hero onOpenOrderModal={handleOpenOrderModal} />
 
-        {/* 2. Stats Section */}
-        <Stats />
+        {/* 2. Stats / Feature Banner Section */}
+        <Stats onOpenOrderModal={handleOpenOrderModal} />
 
-        {/* 3. Why SABOL Section */}
-        <WhySabol />
+        {/* 3. About Us / Why SABOL Section */}
+        <WhySabol onOpenOrderModal={handleOpenOrderModal} />
 
         {/* 4. Products Section (Bottles & 20L Cans) */}
         <Products onOpenOrderModal={handleOpenOrderModal} />

@@ -1,112 +1,176 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Droplets, Leaf, ShieldCheck, Home, Sparkles, CheckCircle2 } from 'lucide-react';
-import SectionHeading from './ui/SectionHeading';
+import { Droplets, Leaf, ShieldCheck, Home, Sparkles, CheckCircle2, ArrowRight, Award } from 'lucide-react';
+import aboutImg from '../assets/about-balice.png';
 
-const features = [
+const coreValues = [
   {
     id: 'pure',
     title: 'Pure',
-    subtitle: 'Quality-controlled drinking water',
-    description: 'Multi-stage purification removes impurities while preserving essential refreshing minerals.',
+    subtitle: 'Quality-Controlled',
+    desc: 'Multi-stage purification removes impurities while preserving refreshing minerals.',
     icon: Droplets,
-    color: 'from-blue-500 to-cyan-400',
-    lightBg: 'bg-blue-50/80',
-    iconColor: 'text-sabol-blue',
+    color: 'text-sabol-blue',
+    bg: 'bg-blue-50/90',
   },
   {
     id: 'fresh',
     title: 'Fresh',
-    subtitle: 'Freshly packed & delivered',
-    description: 'Bottled in clean, automated facilities and delivered promptly to ensure crisp, crisp taste.',
+    subtitle: 'Freshly Bottled',
+    desc: 'Bottled in sterile, automated facilities and dispatched promptly for crisp taste.',
     icon: Leaf,
-    color: 'from-emerald-500 to-teal-400',
-    lightBg: 'bg-emerald-50/80',
-    iconColor: 'text-emerald-600',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50/90',
   },
   {
     id: 'reliable',
     title: 'Reliable',
-    subtitle: 'Regular supply when you need it',
-    description: 'Dependable recurring delivery routines for families, corporate floors, and busy kitchens.',
+    subtitle: 'On-Schedule Supply',
+    desc: 'Dependable recurring routines for families, corporate floors, and busy kitchens.',
     icon: ShieldCheck,
-    color: 'from-blue-600 to-indigo-500',
-    lightBg: 'bg-indigo-50/80',
-    iconColor: 'text-sabol-navy-700',
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-50/90',
   },
   {
     id: 'convenient',
     title: 'Convenient',
-    subtitle: 'Bottle & can delivery at your doorstep',
-    description: 'Effortless ordering via call, WhatsApp, or web with on-time doorstep drops.',
+    subtitle: 'Doorstep Drop',
+    desc: 'Effortless ordering via WhatsApp, call, or web with on-time doorstep drops.',
     icon: Home,
-    color: 'from-cyan-500 to-sky-400',
-    lightBg: 'bg-cyan-50/80',
-    iconColor: 'text-sabol-aqua',
+    color: 'text-sabol-aqua',
+    bg: 'bg-cyan-50/90',
   },
 ];
 
-export const WhySabol = () => {
+export const WhySabol = ({ onOpenOrderModal }) => {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-gradient-to-b from-white via-sabol-ice-50/60 to-white relative overflow-hidden">
-      {/* Subtle background ambient blob */}
-      <div className="absolute top-1/2 -left-48 w-96 h-96 bg-sabol-aqua/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 -right-48 w-96 h-96 bg-sabol-blue/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="about" className="py-20 lg:py-28 bg-gradient-to-b from-white via-sabol-ice-50/70 to-white relative overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/3 -left-48 w-96 h-96 bg-sabol-aqua/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 -right-48 w-96 h-96 bg-sabol-blue/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading
-          badge="WHY CHOOSE SABOL"
-          title="Because You Deserve The Best Water"
-          subtitle="At SABOL, we bring you pure, safe and refreshing drinking water — delivered with care and consistency."
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Side: About Us Content & Core Pillars (Animates FIRST) */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+            className="lg:col-span-7 text-left"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sabol-blue/10 border border-sabol-blue/20 text-sabol-blue text-xs font-extrabold uppercase tracking-wider mb-4"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-sabol-aqua" />
+              <span>ABOUT US • OUR MISSION</span>
+            </motion.div>
 
-        {/* 4 Feature Cards Grid */}
-        <div className="mt-14 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <motion.div
-                key={feature.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-white/90 backdrop-blur-md rounded-3xl p-7 border border-slate-100 shadow-sm hover:shadow-water-lg transition-all duration-300 flex flex-col justify-between"
+            {/* Headline */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-sabol-navy-900 tracking-tight leading-[1.15] font-display mb-4"
+            >
+              Pure Water. <br className="hidden sm:block" />
+              <span className="text-sabol-blue">A Healthier Tomorrow.</span>
+            </motion.h2>
+
+            {/* Subtitle / Story Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed mb-8"
+            >
+              At <strong className="text-sabol-navy-900 font-bold">BALICE</strong>, we bring you pure, safe, and refreshing drinking water — processed through certified multi-stage purification and delivered with uncompromising care and consistency directly to your doorstep.
+            </motion.p>
+
+            {/* 4 Core Pillars Grid (Staggered Entrance) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              {coreValues.map((val, idx) => {
+                const Icon = val.icon;
+                return (
+                  <motion.div
+                    key={val.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + idx * 0.08 }}
+                    className="bg-white/90 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-sabol-aqua/40 transition-all duration-300 flex items-start gap-3.5"
+                  >
+                    <div className={`w-10 h-10 rounded-xl ${val.bg} ${val.color} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm`}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <h4 className="text-base font-bold text-sabol-navy-900 font-display">
+                          {val.title}
+                        </h4>
+                        <span className="text-[10px] font-bold text-sabol-blue uppercase">
+                          • {val.subtitle}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-500 leading-relaxed">
+                        {val.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Action CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <button
+                type="button"
+                onClick={() => onOpenOrderModal ? onOpenOrderModal('all') : null}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#0066d6] hover:bg-[#0052b3] text-white font-bold text-sm shadow-water hover:shadow-water-lg transition-all duration-300 transform active:scale-95 hover:-translate-y-0.5"
               >
-                {/* Top glow hover effect */}
-                <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-sabol-aqua to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                <span>Order Pure Water</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
 
-                <div>
-                  {/* Icon container */}
-                  <div className={`w-14 h-14 rounded-2xl ${feature.lightBg} border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-                    <IconComponent className={`w-7 h-7 ${feature.iconColor}`} />
-                  </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>100% Quality & Hygiene Guaranteed</span>
+              </div>
+            </motion.div>
+          </motion.div>
 
-                  {/* Card Title */}
-                  <h3 className="text-xl font-bold text-sabol-navy-900 font-display mb-1 group-hover:text-sabol-blue transition-colors">
-                    {feature.title}
-                  </h3>
+          {/* Right Side: About BALICE Image (Animates AFTER content finishes) */}
+          <motion.div
+            initial={{ opacity: 0, x: 70, scale: 0.9 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, delay: 0.55, ease: 'easeOut' }}
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="lg:col-span-5 flex justify-center items-center"
+          >
+            <div className="relative w-full max-w-[480px] lg:max-w-none">
+              <img
+                src={aboutImg}
+                alt="About BALICE Pure Water - A Healthier Tomorrow"
+                className="w-full h-auto drop-shadow-2xl select-none pointer-events-none transition-all duration-300 hover:drop-shadow-[0_25px_40px_rgba(0,102,214,0.3)]"
+              />
+            </div>
+          </motion.div>
 
-                  {/* Highlight Subtitle */}
-                  <p className="text-xs font-bold text-sabol-blue uppercase tracking-wider mb-3">
-                    {feature.subtitle}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-
-                {/* Bottom subtle indicator */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-400 group-hover:text-sabol-aqua transition-colors">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>SABOL Promise</span>
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>
